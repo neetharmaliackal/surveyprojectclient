@@ -21,7 +21,7 @@ export class PersonalSurveyService {
     const url=API.PERSONAL_SURVEY_API
     return this.http.get(url)
       //.map((result: Response) => result.json())
-      .pipe(map((response: any) => response.json()));
+      .pipe(map((response: any) => response));
    
   }
 }

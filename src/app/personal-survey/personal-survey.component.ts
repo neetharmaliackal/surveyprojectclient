@@ -4,7 +4,7 @@ import {API} from '../../../API/index'
 import { PersonalSurveyService } from './personal-survey.service';
 import {FormGroup} from '@angular/forms';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
-import {JsonFormData} from '../json-form/json-form.component'
+// import {JsonFormData} from '../json-form/json-form.component'
 @Component({
   selector: 'app-personal-survey',
   templateUrl: './personal-survey.component.html',
@@ -22,17 +22,17 @@ export class PersonalSurveyComponent implements OnInit {
     
   ngOnInit(): void {
  console.log("personal");
-   this.getpersonalsurveyform();
+  //  this.getpersonalsurveyform();
   }
 //  initialmethod(){
 //    this.personalSurveyForm=new FormGroup({});
 //  }
-  getpersonalsurveyform(){
-   this.personalSurveyService.getPersonalData().
-   subscribe((response:JsonFormData) => {;
-     this.formData=response;
-    console.log(response);
-   }
-   )
-  }
+  // getpersonalsurveyform(){
+  //  this.personalSurveyService.getPersonalData().
+  //  subscribe((response:JsonFormData) => {;
+  //    this.formData=response;
+  //   console.log(response);
+  //  }
+  //  )
+  // }
 }
