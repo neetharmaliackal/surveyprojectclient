@@ -8,7 +8,10 @@ export interface Root {
   surveytype: string
   surveycontrollers: Surveycontroller[]
 }
-
+export interface Option {
+  key: string
+  value: string
+}
 export interface Surveycontroller {
   id: string
   text: string
@@ -17,13 +20,15 @@ export interface Surveycontroller {
   flag: boolean
   formcontrolName: string
   validators: fvalidators
-  optional?: boolean
+  options?: Option[]
 }
 
 export interface fvalidators {
   required: boolean
-  minLength?: number
+  minLength: number
 }
+
+
 
 
 // export interface JsonFormData {
@@ -130,4 +135,8 @@ export class JsonFormComponent implements OnInit {
   //   console.log('Form valid: ', this.myForm.valid);
   //   console.log('Form values: ', this.myForm.value);
   // }
+  saveForm(){
+   console.log('Form valid: ', this.myForm.valid);
+  console.log('Form values: ', this.myForm.value);
+  }
 }
