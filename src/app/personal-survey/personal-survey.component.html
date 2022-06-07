@@ -1,0 +1,26 @@
+<!-- <mat-card>
+  <mat-card-title>Actions Buttons</mat-card-title>
+  <mat-card-subtitle>Start</mat-card-subtitle>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+<br> -->
+<mat-card>
+  <mat-card-title>Personal survey</mat-card-title>
+  <mat-card-subtitle>End</mat-card-subtitle>
+  <mat-card-actions align="end">
+    <button mat-button>View all responses</button>
+    <button mat-button>Take Personal survey</button>
+  </mat-card-actions>
+</mat-card>
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title> Dynamic JSON Form </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <app-json-form [jsonFormData]="formData"></app-json-form>
+</ion-content>
