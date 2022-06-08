@@ -13,3 +13,42 @@
 .form-container{
     margin: 100px;
 }
+
+.formstyle{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    /* align-items:center; */
+    width: 30%;
+    box-sizing: border-box;
+    background-color: #f3f4f9;
+    color: #273992 !important;
+    /* border-radius: 10px; */
+    padding: 1em;
+    border-radius: 50px;
+    box-shadow:  20px 20px 60px #cfcfd4,-20px -20px 60px #ffffff;
+    padding: 2em;
+    border-radius: 20px;
+}
+.buttonstyle{
+    margin-right: 5px;
+    color:light #007bff;
+}
+.radiowrap{
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+}
+
+.formwrap{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    background: #f3f4f9;
+    padding: 1em;
+    padding-top: 3em;
+    height: 100%;
+}
+.headerwrap{
+    color: #273992 !important;
+}

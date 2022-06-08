@@ -94,31 +94,33 @@
       </mat-card-actions>
     </mat-card>
   </form> -->
+  <div class="formwrap">
+<div class="formstyle">
+    <h1 class="headerwrap">Peronal survey</h1>
+  <div *ngFor="let question of formData">
+    <div [formGroup]="myForm">
+      <!-- <label [attr.for]="question.key">{{question.label}}</label> -->
 
-<div *ngFor="let question of formData">
-  <div [formGroup]="myForm">
-    <!-- <label [attr.for]="question.key">{{question.label}}</label> -->
+      <!-- <div [ngSwitch]="question.type"> -->
+      <!-- {{question.type}} -->
+      <mat-form-field *ngIf="question.type === 'text-box'" appearance="outline">
+        <mat-label>{{ question.text }}</mat-label>
+        <input
+          matInput
+          [placeholder]="question.text"
+          [type]="question.type"
+          [formControlName]="question.formcontrolName"
+        />
+      </mat-form-field>
 
-    <!-- <div [ngSwitch]="question.type"> -->
-    <!-- {{question.type}} -->
-    <mat-form-field *ngIf="question.type === 'text-box'">
-      <mat-label>{{ question.text }}</mat-label>
-      <input
-        matInput
-        [placeholder]="question.text"
-        [type]="question.type"
-        [formControlName]="question.formcontrolName"
-      />
-    </mat-form-field>
-
-    <!-- <input *ngSwitchCase="'textbox'" [formControlName]="question.key"
+      <!-- <input *ngSwitchCase="'textbox'" [formControlName]="question.key"
               [id]="question.key" [type]="question.type"> -->
 
-    <!-- <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
+      <!-- <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
         <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
       </select> -->
 
-    <!-- <mat-form-field *ngSwitchCase="'dropdown'">
+      <!-- <mat-form-field *ngSwitchCase="'dropdown'">
         <mat-label>{{question.label}}</mat-label>
         <mat-select [formControlName]="question.key">
           <mat-option *ngFor="let opt of question.options" [value]="opt.key">
@@ -126,37 +128,40 @@
           </mat-option>
         </mat-select>
       </mat-form-field> -->
-    <div *ngIf="question.type === 'RadioButton'">
-      <label class="example-radio-label">{{ question.text }}</label>
-      <mat-radio-group
-        [formControlName]="question.formcontrolName"
-        class="example-radio-group"
-      >
-        <mat-radio-button
-          class="example-radio-button"
-          *ngFor="let opt of question.options"
-          [value]="opt.key"
+      <div *ngIf="question.type === 'RadioButton'" class="radiowrap">
+        <label class="example-radio-label">{{ question.text }}</label>
+        <mat-radio-group
+          [formControlName]="question.formcontrolName"
+          class="example-radio-group"
         >
-          {{ opt.value }}
-        </mat-radio-button>
-      </mat-radio-group>
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let opt of question.options"
+            [value]="opt.key"
+          >
+            {{ opt.value }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div *ngIf="question.type === 'Textarea'">
+        <mat-form-field>
+          <mat-label>{{ question.text }}</mat-label>
+          <textarea
+            matInput
+            [placeholder]="question.text"
+            [type]="question.type"
+            [formControlName]="question.formcontrolName"
+          >
+          </textarea>
+        </mat-form-field>
+      </div>
+      <!-- </div>  -->
+      <!-- <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div> -->
     </div>
-   <div *ngIf="question.type==='Textarea'">
-    <mat-form-field >
-       
-        <mat-label>{{question.text}}</mat-label>
-        <textarea matInput [placeholder]="question.text" 
-          [type]="question.type" [formControlName]="question.formcontrolName">
-    </textarea>
-      </mat-form-field>
-    </div>
-    <!-- </div>  -->
-    <!-- <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div> -->
   </div>
 
-</div>
-
-<div class="form-row">
+  <div class="form-row" class="buttonstyle">
     <button mat-stroked-button type="submit"  (click)="saveForm()">Save</button>
   </div>
-
+</div>
+</div>

@@ -1,0 +1,15 @@
+.card{ 
+
+display:flex limportant;
+margin-bottom: 10px;
+border-radius:20px;
+background-color: #f3f4f9;
+color: #273992 !important;
+margin-bottom: 1.5em;
+overflow: hidden;
+align-items: baseline;
+padding: 30px;
+justify-content: space-between;
+box-shadow: -3px -3px 7px #ffffff94, 3px 3px 5px Urgb (94 104 121 / 29%);
+font-family:"Bogle", "Roboto", sans-serif limportant;
+}
