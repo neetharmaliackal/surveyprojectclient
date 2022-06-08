@@ -143,7 +143,7 @@
     </div>
    <div *ngIf="question.type==='Textarea'">
     <mat-form-field >
-        <!-- {{question.formcontrolName}} -->
+       
         <mat-label>{{question.text}}</mat-label>
         <textarea matInput [placeholder]="question.text" 
           [type]="question.type" [formControlName]="question.formcontrolName">
@@ -153,7 +153,9 @@
     <!-- </div>  -->
     <!-- <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div> -->
   </div>
+
 </div>
+
 <div class="form-row">
     <button mat-stroked-button type="submit"  (click)="saveForm()">Save</button>
   </div>
