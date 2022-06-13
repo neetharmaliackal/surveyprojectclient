@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges, } from '@angular/co
 import { PersonalSurveyService } from '../personal-survey/personal-survey.service';
 //import { JsonFormData, Surveycontroller } from "../models/personalsurveyModel"
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
+import { JsonFormService } from './json-form.service';
 
 export interface Root {
   surveyid: number
@@ -43,11 +44,12 @@ export interface fvalidators {
 export class JsonFormComponent implements OnInit {
   // user:any = {};
   user:any = {};
-  @Input() jsonFormData: any;
+  // @Input() jsonFormData: any;
   public myForm: FormGroup = this.fb.group({});
   public formData!: Surveycontroller[];
   constructor(private fb: FormBuilder,
     private personalSurveyService: PersonalSurveyService,
+    private jsonFormService: JsonFormService,
   ) { }
 
   ngOnInit() {
@@ -82,14 +84,20 @@ export class JsonFormComponent implements OnInit {
 
   
   saveForm(){
-   console.log('Form valid: ', this.myForm.valid);
-  console.log('Form values: ', this.myForm.value);
-  this.user=Object.assign(this.user, this.myForm.value);
+    this.user=Object.assign(this.user, this.myForm.value);
+    // this.jsonFormService.mapper(this.user);
+    this.jsonFormService.profileSave(this.user).subscribe(result => {
+      // console.log("result",result);
+    })
+  }
+  //  console.log('Form valid: ', this.myForm.valid);
+  // console.log('Form values: ', this.myForm.value);
+  // this.user=Object.assign(this.user, this.myForm.value);
 
-  localStorage.setItem('Users',JSON.stringify(this.user));
+  // localStorage.setItem('Users',JSON.stringify(this.user));
   // this.addUser(this.user);
   // this.myForm.reset();
-  }
+ 
 
   // addUser(user: any){
   //   let users=[];

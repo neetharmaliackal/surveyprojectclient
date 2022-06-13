@@ -21,3 +21,10 @@ export interface Root {
   export interface JsonFormData {
     controls: Surveycontroller[];
   }
+  export interface  peronslSurveyResponse{
+    Firstname: string,
+     Middlename: string,
+     Lastname: string,
+     Gender:string,
+     Address:string
+  }
