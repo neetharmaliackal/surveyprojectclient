@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { PersonalSurveyModule } from './personal-survey/personalsurvey.module';
+
 @NgModule({
   declarations: [
     AppComponent,

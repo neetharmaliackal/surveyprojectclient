@@ -3,6 +3,14 @@ import { PersonalSurveyService } from '../personal-survey/personal-survey.servic
 //import { JsonFormData, Surveycontroller } from "../models/personalsurveyModel"
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 import { JsonFormService } from './json-form.service';
+import { Routes } from '@angular/router';
+import { UsersdataComponent } from '../usersdata/usersdata.component';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+const routes: Routes = [
+  { path: 'usersdata', component: UsersdataComponent },
+];
 
 export interface Root {
   surveyid: number
@@ -50,6 +58,7 @@ export class JsonFormComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private personalSurveyService: PersonalSurveyService,
     private jsonFormService: JsonFormService,
+    public router: Router
   ) { }
 
   ngOnInit() {
@@ -84,11 +93,20 @@ export class JsonFormComponent implements OnInit {
 
   
   saveForm(){
-    this.user=Object.assign(this.user, this.myForm.value);
+
+    this.user=Object.assign(this.user, this.myForm.value);  
+    
     // this.jsonFormService.mapper(this.user);
+    console.log("this.user",this.user);
     this.jsonFormService.profileSave(this.user).subscribe(result => {
       // console.log("result",result);
+    //   if(result){
+    
+    //   this.router.navigate(['/usersdata']);
+    //  }
+      
     })
+    this.router.navigate(['/usersdata']); 
   }
   //  console.log('Form valid: ', this.myForm.valid);
   // console.log('Form values: ', this.myForm.value);

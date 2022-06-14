@@ -19,6 +19,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { UsersdataComponent } from '../usersdata/usersdata.component';
+import { UsersdataService } from '../usersdata/usersdata.service';
+import { JsonFormService } from '../json-form/json-form.service';
 
 @NgModule({
   imports: [
@@ -40,9 +43,10 @@ import { MatNativeDateModule } from '@angular/material/core';
   ],
   declarations: [ 
       PersonalSurveyComponent,
-       JsonFormComponent
+       JsonFormComponent,
+       UsersdataComponent
     ],
-    providers: [PersonalSurveyService],
+    providers: [PersonalSurveyService,UsersdataService,JsonFormService],
    
 })
 export class PersonalSurveyModule {}
