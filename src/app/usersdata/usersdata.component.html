@@ -2,17 +2,32 @@
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
-  
-<tr>FirstName</tr>
-<div  *ngFor="let data of UserData; let i=index">
+          <tr>
+            <th>firstName
+                
+            </th>
+            <th>middleName</th>
+            <th>lastName</th>
+            <th>Gender</th>
+            <th>address</th>
+          </tr>
+<!-- <tr>FirstName</tr> -->
 
+<div  *ngFor="let data of UserData; let i=index">
+    <tr>
   <td >{{data.firstName}}</td>
-   
+  <td >{{data.middleName}}</td>
+  <td >{{data.lastName}}</td>
+  <td >{{data.radio}}</td>
+  <td >{{data.address}}</td>
+</tr>
+ 
+  
+
 </div>
 
-  </table>
-  
-  
+
+ 
   
   <!-- Copyright 2022 Google LLC. All Rights Reserved.
       Use of this source code is governed by an MIT-style license that
