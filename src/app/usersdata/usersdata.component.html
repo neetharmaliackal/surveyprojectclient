@@ -1,33 +1,45 @@
-<table  class="mat-elevation-z8">
+<table mat-table [dataSource]="UserData" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
-          <tr>
-            <th>firstName
-                
-            </th>
-            <th>middleName</th>
-            <th>lastName</th>
-            <th>Gender</th>
-            <th>address</th>
-          </tr>
-<!-- <tr>FirstName</tr> -->
-
-<div  *ngFor="let data of UserData; let i=index">
-    <tr>
-  <td >{{data.firstName}}</td>
-  <td >{{data.middleName}}</td>
-  <td >{{data.lastName}}</td>
-  <td >{{data.radio}}</td>
-  <td >{{data.address}}</td>
-</tr>
- 
   
+    <!-- Position Column -->
+    <!-- <div *ngFor="let Data of UserData" UserData="UserData"> -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef> FirstName </th>
+      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="middleName">
+      <th mat-header-cell *matHeaderCellDef> MiddleName </th>
+      <td mat-cell *matCellDef="let element"> {{element.middleName}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef> LastName </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="radio">
+      <th mat-header-cell *matHeaderCellDef> Gender </th>
+      <td mat-cell *matCellDef="let element"> {{element.radio}} </td>
+    </ng-container>
 
-</div>
-
-
- 
+    <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> address </th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+<!-- </div> -->
+  </table>
+  
+  
   
   <!-- Copyright 2022 Google LLC. All Rights Reserved.
       Use of this source code is governed by an MIT-style license that

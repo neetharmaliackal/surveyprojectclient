@@ -22,7 +22,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { UsersdataComponent } from '../usersdata/usersdata.component';
 import { UsersdataService } from '../usersdata/usersdata.service';
 import { JsonFormService } from '../json-form/json-form.service';
-
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   imports: [
     CommonModule ,
@@ -39,7 +39,8 @@ import { JsonFormService } from '../json-form/json-form.service';
     MatCardModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule
   ],
   declarations: [ 
       PersonalSurveyComponent,
