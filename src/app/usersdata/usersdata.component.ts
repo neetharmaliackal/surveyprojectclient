@@ -10,6 +10,8 @@ export interface userProperties {
   lastName: string
   radio: string
   address: string
+  // approved: boolean,
+  // rejected: boolean
 }
 
 @Component({
@@ -21,9 +23,10 @@ export class UsersdataComponent implements OnInit {
   public userForm: FormGroup = this.fb.group({});
   public UserData: userProperties[]=[];
   // UserData: any;
-  displayedColumns: string[] = ['firstName', 'middleName', 'lastName', 'radio','address'];
+  displayedColumns: string[] = ['firstName', 'middleName', 'lastName', 'radio','address','approvereject'];
   // public UserData: any=[];
   // data: any;
+  // public element=[];
   constructor(private fb: FormBuilder,private usersdataService: UsersdataService) { }
 
   ngOnInit(): void {
@@ -42,8 +45,10 @@ export class UsersdataComponent implements OnInit {
 
   }
   
-  // getUsersData(UserData: userProperties) {
-  //   const User = this.UserData;
+  // delete(element:any)
+  // {
+  //   this.element.removeAt(element);
+
   // }
 
 
