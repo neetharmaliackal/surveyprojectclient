@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { UsersdataService } from './usersdata.service';
-export type Root = userProperties[]
+
+// export type Root = userProperties[]
 
 export interface userProperties {
   firstName: string
@@ -16,23 +18,30 @@ export interface userProperties {
   styleUrls: ['./usersdata.component.css']
 })
 export class UsersdataComponent implements OnInit {
-  UserData: any;
+  public userForm: FormGroup = this.fb.group({});
+  public UserData: userProperties[]=[];
+  // UserData: any;
   displayedColumns: string[] = ['firstName', 'middleName', 'lastName', 'radio','address'];
-  constructor(private usersdataService: UsersdataService) { }
+  // public UserData: any=[];
+  // data: any;
+  constructor(private fb: FormBuilder,private usersdataService: UsersdataService) { }
 
   ngOnInit(): void {
 
     this.usersdataService.getUsersData().
       subscribe((response) => {
         this.UserData = response;
-        console.log(this.UserData);
+        //this.userForm= this.toFormGroup(this.UserData);
+
+        console.log("data from file",this.UserData);
         // this.getUsersData(this.UserData);
-        const dataSource = this.UserData;
+        // const dataSource = this.UserData;
       })
 
      
 
   }
+  
   // getUsersData(UserData: userProperties) {
   //   const User = this.UserData;
   // }
