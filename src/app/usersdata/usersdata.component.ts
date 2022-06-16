@@ -26,9 +26,9 @@ export class UsersdataComponent implements OnInit {
   displayedColumns: string[] = ['firstName', 'middleName', 'lastName', 'radio','address','approvereject'];
   // public UserData: any=[];
   // data: any;
-  // public element=[];
+  public approve=[];
   constructor(private fb: FormBuilder,private usersdataService: UsersdataService) { }
-
+ user={};
   ngOnInit(): void {
 
     this.usersdataService.getUsersData().
@@ -43,6 +43,18 @@ export class UsersdataComponent implements OnInit {
 
      
 
+  }
+Approve(element:any){
+this.usersdataService.ApproveUsersData(element).subscribe(data =>{
+  // const firstName= data.firstName
+})
+  }
+
+ Reject(element:any){
+ 
+  this.usersdataService.RejectUsersData(element).subscribe(data =>{
+
+  })
   }
   
   // delete(element:any)

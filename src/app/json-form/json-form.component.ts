@@ -108,27 +108,5 @@ export class JsonFormComponent implements OnInit {
     })
     this.router.navigate(['/usersdata']); 
   }
-  //  console.log('Form valid: ', this.myForm.valid);
-  // console.log('Form values: ', this.myForm.value);
-  // this.user=Object.assign(this.user, this.myForm.value);
-
-  // localStorage.setItem('Users',JSON.stringify(this.user));
-  // this.addUser(this.user);
-  // this.myForm.reset();
- 
-
-  // addUser(user: any){
-  //   let users=[];
-  //   if(localStorage.getItem('Users')){
-  //     users= JSON.parse(localStorage.getItem('Users') || '{}');
-  //   //  users= JSON.parse(localStorage.getItem('Users') || '{}');
-  //     // users=JSON.parse(localStorage.getItem('Users'))
-  //     users=[user, ...users];
-  //   }
-  //   else{
-  //     users=[user];
-  //   }
-  //   localStorage.setItem('Users',JSON.stringify(users));
-  // }
 
 }
