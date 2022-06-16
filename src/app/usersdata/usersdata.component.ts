@@ -45,14 +45,15 @@ export class UsersdataComponent implements OnInit {
 
   }
 Approve(element:any){
-this.usersdataService.ApproveUsersData(element).subscribe(data =>{
-  // const firstName= data.firstName
+  // let users= JSON.stringify(element);
+this.usersdataService.ApproveUsersData(element.id,"approve").subscribe(data =>{
+ 
 })
   }
 
  Reject(element:any){
  
-  this.usersdataService.RejectUsersData(element).subscribe(data =>{
+  this.usersdataService.ApproveUsersData(element.id,"reject").subscribe(data =>{
 
   })
   }

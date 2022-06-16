@@ -26,5 +26,7 @@ export interface Root {
      Middlename: string,
      Lastname: string,
      Gender:string,
-     Address:string
+     Address:string,
+     status:string,
+     id:string
   }

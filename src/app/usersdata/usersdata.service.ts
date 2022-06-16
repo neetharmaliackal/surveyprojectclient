@@ -20,15 +20,16 @@ export class UsersdataService {
    
   }
 
-  ApproveUsersData(usersdata: peronslSurveyResponse): Observable<any>{ 
+  ApproveUsersData(usersdata: peronslSurveyResponse,status:string): Observable<any>{ 
     const URL=API.PERSONAL_SURVEY_APPROVED_USERS;
-    const body =usersdata;
+    // let body= JSON.stringify(usersdata);
+    const body ={id:usersdata,status};
     return this.http.put(URL, body);
   }
 
   RejectUsersData(usersdata: any): Observable<any>{ 
     const URL=API.PERSONAL_SURVEY_REJECTED_USERS;
-    const body =usersdata;
+    const body ={usersdata};
     return this.http.put(URL, body);
 
   }
