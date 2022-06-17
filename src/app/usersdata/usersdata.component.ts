@@ -72,12 +72,19 @@ this.usersdataService.ApproveUsersData(element.id,"approve").subscribe(data =>{
   ApprovedUsers(){
     this.usersdataService.getUsersData().
     subscribe((data) => {
-      // data.forEach(element => {
-      //   if(element.status=="")
-        
-      // });
     this.UserData = data.filter((data: { status: string; }) => data.status == "approve");
-    
+    })
+  }
+  RejectedUsers(){
+    this.usersdataService.getUsersData().
+    subscribe((data) => {
+    this.UserData = data.filter((data: { status: string; }) => data.status == "reject");
+    })
+  }
+  ViewAllUsers(){
+    this.usersdataService.getUsersData().
+    subscribe((data) => {
+    this.UserData = data;
     })
   }
   // delete(element:any)

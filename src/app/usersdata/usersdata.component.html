@@ -1,4 +1,5 @@
 <!-- pending users table -->
+<h1>Users</h1>
 <table mat-table [dataSource]="UserData" class="mat-elevation-z8">
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef> FirstName </th>
@@ -42,7 +43,9 @@
   <div class="allrabuttons">
     <button mat-raised-button color="primary" (click)="ApprovedUsers()">Approved Users</button>
  
-    <button mat-raised-button color="warn" >Rejected Users</button> 
+    <button mat-raised-button color="warn" (click)="RejectedUsers()">Rejected Users</button> 
+    
+    <button mat-raised-button color="accent" (click)="ViewAllUsers()">View All Users</button> 
     <button mat-raised-button color="Green" routerLink="/jsonForm"  routerLinkActive="active">Back</button> 
   </div>
   {{status}}
