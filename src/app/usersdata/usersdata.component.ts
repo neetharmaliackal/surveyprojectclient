@@ -26,7 +26,10 @@ export class UsersdataComponent implements OnInit {
   displayedColumns: string[] = ['firstName', 'middleName', 'lastName', 'radio','address','approvereject'];
   // public UserData: any=[];
   // data: any;
-  public approve=[];
+  public status="";
+  public approvedUsersData: userProperties[]=[];
+  public RejectedUsersData: userProperties[]=[];
+ 
   constructor(private fb: FormBuilder,private usersdataService: UsersdataService) { }
  user={};
   ngOnInit(): void {
@@ -47,7 +50,15 @@ export class UsersdataComponent implements OnInit {
 Approve(element:any){
   // let users= JSON.stringify(element);
 this.usersdataService.ApproveUsersData(element.id,"approve").subscribe(data =>{
- 
+
+
+//  if(data.status=="approve"){
+//   this.approvedUsersData=data;
+//   console.log("this.approvedUsersData",this.approvedUsersData);
+//  }
+//  else if(data && data.status=="reject"){
+//   this.RejectedUsersData=data;
+//  }
 })
   }
 
@@ -57,7 +68,18 @@ this.usersdataService.ApproveUsersData(element.id,"approve").subscribe(data =>{
 
   })
   }
-  
+
+  ApprovedUsers(){
+    this.usersdataService.getUsersData().
+    subscribe((data) => {
+      // data.forEach(element => {
+      //   if(element.status=="")
+        
+      // });
+    this.UserData = data.filter((data: { status: string; }) => data.status == "approve");
+    
+    })
+  }
   // delete(element:any)
   // {
   //   this.element.removeAt(element);

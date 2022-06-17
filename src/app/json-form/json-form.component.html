@@ -3,14 +3,21 @@
     <h1 class="headerwrap">Peronal survey</h1>
   <div *ngFor="let question of formData">
     <div [formGroup]="myForm">
+
       <mat-form-field *ngIf="question.type === 'text-box'" appearance="outline">
         <mat-label>{{ question.text }}</mat-label>
+        <!-- <span style="color:red">Name Field should enter</span> -->
+        
         <input
           matInput
           [placeholder]="question.text"
           [type]="question.type"
           [formControlName]="question.formcontrolName"
         />
+        <!-- {{question.formcontrolName}} -->
+        <mat-error *ngIf="myForm.get(question.formcontrolName)">
+          Name is required
+         </mat-error>
       </mat-form-field>
       <div *ngIf="question.type === 'RadioButton'" class="radiowrap">
         <label class="example-radio-label">{{ question.text }}</label>
@@ -26,6 +33,9 @@
             {{ opt.value }}
           </mat-radio-button>
         </mat-radio-group>
+        <!-- <mat-error *ngIf="myForm.get('radio').hasError('required')">
+         Gender is required
+         </mat-error> -->
       </div>
       <div *ngIf="question.type === 'Textarea'">
         <mat-form-field>
@@ -38,12 +48,15 @@
           >
           </textarea>
         </mat-form-field>
+        <!-- <mat-error *ngIf="myForm.get('radio').hasError('required')">
+          Address is required
+          </mat-error> -->
       </div>
     </div>
   </div>
 
   <div class="form-row" class="buttonstyle">
-    <button mat-stroked-button type="submit"  (click)="saveForm()">Save</button>
+    <button mat-stroked-button type="submit" class="btnfeature" (click)="saveForm()">Save</button>
   </div>
 </div>
 </div>

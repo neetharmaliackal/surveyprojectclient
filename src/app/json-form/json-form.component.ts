@@ -107,6 +107,11 @@ export class JsonFormComponent implements OnInit {
       
     })
     this.router.navigate(['/usersdata']); 
+    // if(myForm.valid && myForm.Touched){
+    
+    // }
   }
+
+
 
 }
