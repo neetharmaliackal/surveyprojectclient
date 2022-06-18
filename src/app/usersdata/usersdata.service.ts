@@ -20,17 +20,17 @@ export class UsersdataService {
    
   }
 
-  ApproveUsersData(usersdata: peronslSurveyResponse,status:string): Observable<any>{ 
+  ApproveorRejectUsersData(usersdata: peronslSurveyResponse,status:string): Observable<any>{ 
     const URL=API.PERSONAL_SURVEY_APPROVED_USERS;
     // let body= JSON.stringify(usersdata);
     const body ={id:usersdata,status};
     return this.http.put(URL, body);
   }
 
-  RejectUsersData(usersdata: any): Observable<any>{ 
-    const URL=API.PERSONAL_SURVEY_REJECTED_USERS;
-    const body ={usersdata};
-    return this.http.put(URL, body);
+  // RejectUsersData(usersdata: any): Observable<any>{ 
+  //   const URL=API.PERSONAL_SURVEY_REJECTED_USERS;
+  //   const body ={usersdata};
+  //   return this.http.put(URL, body);
 
-  }
+  // }
 }

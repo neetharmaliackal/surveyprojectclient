@@ -4,7 +4,7 @@
   <div *ngFor="let question of formData">
     <div [formGroup]="myForm">
 
-      <mat-form-field *ngIf="question.type === 'text-box'" appearance="outline">
+      <mat-form-field *ngIf="question.type === 'text-box'"  appearance="outline">
         <mat-label>{{ question.text }}</mat-label>
         <!-- <span style="color:red">Name Field should enter</span> -->
         
@@ -33,7 +33,7 @@
             {{ opt.value }}
           </mat-radio-button>
         </mat-radio-group>
-        <!-- <mat-error *ngIf="myForm.get('radio').hasError('required')">
+        <!-- <mat-error *ngIf="myForm.get('radio') && myForm.touched">
          Gender is required
          </mat-error> -->
       </div>
@@ -48,7 +48,7 @@
           >
           </textarea>
         </mat-form-field>
-        <!-- <mat-error *ngIf="myForm.get('radio').hasError('required')">
+        <!-- <mat-error *ngIf="myForm.get('address')">
           Address is required
           </mat-error> -->
       </div>
@@ -56,7 +56,7 @@
   </div>
 
   <div class="form-row" class="buttonstyle">
-    <button mat-stroked-button type="submit" class="btnfeature" (click)="saveForm()">Save</button>
+    <button mat-stroked-button type="submit" class="btnfeature"  (click)="saveForm()" [disabled]="!myForm.valid">Save</button>
   </div>
 </div>
 </div>

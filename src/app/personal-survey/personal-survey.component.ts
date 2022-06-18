@@ -22,17 +22,7 @@ export class PersonalSurveyComponent implements OnInit {
     
   ngOnInit(): void {
  console.log("personal");
-  //  this.getpersonalsurveyform();
+ 
   }
-//  initialmethod(){
-//    this.personalSurveyForm=new FormGroup({});
-//  }
-  // getpersonalsurveyform(){
-  //  this.personalSurveyService.getPersonalData().
-  //  subscribe((response:JsonFormData) => {;
-  //    this.formData=response;
-  //   console.log(response);
-  //  }
-  //  )
-  // }
+
 }

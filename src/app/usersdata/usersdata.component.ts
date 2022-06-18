@@ -10,6 +10,8 @@ export interface userProperties {
   lastName: string
   radio: string
   address: string
+  status: string
+  id:any
   // approved: boolean,
   // rejected: boolean
 }
@@ -23,13 +25,13 @@ export class UsersdataComponent implements OnInit {
   public userForm: FormGroup = this.fb.group({});
   public UserData: userProperties[]=[];
   // UserData: any;
-  displayedColumns: string[] = ['firstName', 'middleName', 'lastName', 'radio','address','approvereject'];
+  displayedColumns: string[] = ['firstName', 'middleName', 'lastName', 'radio','address','approvereject','status'];
   // public UserData: any=[];
   // data: any;
   public status="";
   public approvedUsersData: userProperties[]=[];
   public RejectedUsersData: userProperties[]=[];
- 
+  btnDisabled = false;
   constructor(private fb: FormBuilder,private usersdataService: UsersdataService) { }
  user={};
   ngOnInit(): void {
@@ -49,8 +51,16 @@ export class UsersdataComponent implements OnInit {
   }
 Approve(element:any){
   // let users= JSON.stringify(element);
-this.usersdataService.ApproveUsersData(element.id,"approve").subscribe(data =>{
+  alert("User data approved successfully"); 
 
+this.usersdataService.ApproveorRejectUsersData(element.id,"approved").subscribe(data =>{
+  // for(let i=0;i<data.length;i++){
+    // if(element.id==data.id){
+    //   this.btnDisabled = true;
+    //  }
+    
+  // }
+ 
 
 //  if(data.status=="approve"){
 //   this.approvedUsersData=data;
@@ -63,8 +73,8 @@ this.usersdataService.ApproveUsersData(element.id,"approve").subscribe(data =>{
   }
 
  Reject(element:any){
- 
-  this.usersdataService.ApproveUsersData(element.id,"reject").subscribe(data =>{
+  alert("User data rejected");  
+  this.usersdataService.ApproveorRejectUsersData(element.id,"rejected").subscribe(data =>{
 
   })
   }
@@ -72,14 +82,16 @@ this.usersdataService.ApproveUsersData(element.id,"approve").subscribe(data =>{
   ApprovedUsers(){
     this.usersdataService.getUsersData().
     subscribe((data) => {
-    this.UserData = data.filter((data: { status: string; }) => data.status == "approve");
+    this.UserData = data.filter((data: { status: string; }) => data.status == "approved");
     })
+   
   }
   RejectedUsers(){
     this.usersdataService.getUsersData().
     subscribe((data) => {
-    this.UserData = data.filter((data: { status: string; }) => data.status == "reject");
+    this.UserData = data.filter((data: { status: string; }) => data.status == "rejected");
     })
+
   }
   ViewAllUsers(){
     this.usersdataService.getUsersData().

@@ -55,6 +55,7 @@ export class JsonFormComponent implements OnInit {
   // @Input() jsonFormData: any;
   public myForm: FormGroup = this.fb.group({});
   public formData!: Surveycontroller[];
+  isNextDisabled=true
   constructor(private fb: FormBuilder,
     private personalSurveyService: PersonalSurveyService,
     private jsonFormService: JsonFormService,
@@ -69,6 +70,9 @@ export class JsonFormComponent implements OnInit {
        this.myForm= this.toFormGroup(this.formData);
     
       })
+  //     this.myForm.valueChanges.subscribe((v) => {
+  //       this.isNextDisabled = !this.myForm.valid;
+  //  });
      
     // this.myForm = this.fb.group({
     //   personalData: new FormArray([])
@@ -95,7 +99,7 @@ export class JsonFormComponent implements OnInit {
   saveForm(){
 
     this.user=Object.assign(this.user, this.myForm.value);  
-    
+    alert("user data saved successfully");  
     // this.jsonFormService.mapper(this.user);
     console.log("this.user",this.user);
     this.jsonFormService.profileSave(this.user).subscribe(result => {
