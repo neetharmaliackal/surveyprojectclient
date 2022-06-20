@@ -56,6 +56,7 @@ export class JsonFormComponent implements OnInit {
   public myForm: FormGroup = this.fb.group({});
   public formData!: Surveycontroller[];
   isNextDisabled=true
+  submitted = false;
   constructor(private fb: FormBuilder,
     private personalSurveyService: PersonalSurveyService,
     private jsonFormService: JsonFormService,
@@ -97,7 +98,12 @@ export class JsonFormComponent implements OnInit {
 
   
   saveForm(){
+    this.submitted = true;
 
+    // stop here if form is invalid
+    if (this.myForm.invalid) {
+        return;
+    }
     this.user=Object.assign(this.user, this.myForm.value);  
     alert("user data saved successfully");  
     // this.jsonFormService.mapper(this.user);

@@ -23,6 +23,8 @@ import { UsersdataComponent } from '../usersdata/usersdata.component';
 import { UsersdataService } from '../usersdata/usersdata.service';
 import { JsonFormService } from '../json-form/json-form.service';
 import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 @NgModule({
   imports: [
     CommonModule ,
@@ -40,7 +42,9 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
+    
   ],
   declarations: [ 
       PersonalSurveyComponent,

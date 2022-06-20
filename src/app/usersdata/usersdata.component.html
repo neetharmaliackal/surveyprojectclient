@@ -1,9 +1,15 @@
 <!-- pending users table -->
 <h1>Users</h1>
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter(value)" placeholder="Filter">
+  </mat-form-field>
+</div>
 <table mat-table [dataSource]="UserData" class="mat-elevation-z8">
+
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef> FirstName </th>
-      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      <td mat-cell *matCellDef="let element" > {{element.firstName}} </td>
     </ng-container>
   
    
@@ -44,6 +50,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
 
   <div class="allrabuttons">
     <button mat-raised-button color="primary" (click)="ApprovedUsers()">Approved Users</button>
