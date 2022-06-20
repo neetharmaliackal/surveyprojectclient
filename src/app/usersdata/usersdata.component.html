@@ -2,10 +2,10 @@
 <h1>Users</h1>
 <div class="example-header">
   <mat-form-field>
-    <input matInput (keyup)="applyFilter(value)" placeholder="Filter">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
   </mat-form-field>
 </div>
-<table mat-table [dataSource]="UserData" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef> FirstName </th>
@@ -50,9 +50,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator #paginator
+  <!-- <mat-paginator #paginator
                  [pageSize]="10"
                  [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator> -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons 
+                 aria-label="Select page of dataSource">
   </mat-paginator>
 
   <div class="allrabuttons">

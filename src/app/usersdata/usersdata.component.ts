@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UsersdataService } from './usersdata.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 // export type Root = userProperties[]
 
@@ -35,7 +36,9 @@ export class UsersdataComponent implements OnInit {
   btnDisabled = false;
   submitted = false;
   public value = "";
+  // @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  dataSource: any;
   // dataSource: any;
  
   constructor(private fb: FormBuilder, private usersdataService: UsersdataService) { }
@@ -44,7 +47,8 @@ export class UsersdataComponent implements OnInit {
 
     this.usersdataService.getUsersData().
       subscribe((response) => {
-        this.UserData = response;
+        //this.UserData = response;
+       this.dataSource= new MatTableDataSource<userProperties>(response);
         console.log("data from file", this.UserData);
       })
 
@@ -52,14 +56,15 @@ export class UsersdataComponent implements OnInit {
 
   }
   
-  // ngAfterViewInit() {
- 
-  // }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.UserData.filter = filterValue;
+  applyFilter(filterValue: any) {
+    const filters=filterValue.target.value;
+    // filterValue = filterValue.trim(); // Remove whitespace
+    // filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filters?.trim()?.toLowerCase();
   }
 
   Approve(element: any) {
@@ -95,21 +100,21 @@ export class UsersdataComponent implements OnInit {
   ApprovedUsers() {
     this.usersdataService.getUsersData().
       subscribe((data) => {
-        this.UserData = data.filter((data: { status: string; }) => data.status == "approved");
+        this.dataSource = data.filter((data: { status: string; }) => data.status == "approved");
       })
 
   }
   RejectedUsers() {
     this.usersdataService.getUsersData().
       subscribe((data) => {
-        this.UserData = data.filter((data: { status: string; }) => data.status == "rejected");
+        this.dataSource= data.filter((data: { status: string; }) => data.status == "rejected");
       })
 
   }
   ViewAllUsers() {
     this.usersdataService.getUsersData().
       subscribe((data) => {
-        this.UserData = data;
+        this.dataSource= data;
       })
   }
   
