@@ -1,12 +1,13 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, } from '@angular/core';
 import { PersonalSurveyService } from '../personal-survey/personal-survey.service';
 //import { JsonFormData, Surveycontroller } from "../models/personalsurveyModel"
-import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { JsonFormService } from './json-form.service';
 import { Routes } from '@angular/router';
 import { UsersdataComponent } from '../usersdata/usersdata.component';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { DialogService } from './dialog.service';
 
 const routes: Routes = [
   { path: 'usersdata', component: UsersdataComponent },
@@ -53,14 +54,23 @@ export class JsonFormComponent implements OnInit {
   // user:any = {};
   user:any = {};
   // @Input() jsonFormData: any;
-  public myForm: FormGroup = this.fb.group({});
+  public myForm: FormGroup = this.fb.group({
+   
+    firstName: ['', Validators.required],
+    middleName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    radio: ['', Validators.required],
+    address: ['', [Validators.required, Validators.minLength(6)]],
+ 
+  });
   public formData!: Surveycontroller[];
   isNextDisabled=true
   submitted = false;
   constructor(private fb: FormBuilder,
     private personalSurveyService: PersonalSurveyService,
     private jsonFormService: JsonFormService,
-    public router: Router
+    public router: Router,
+    // public dialogService:DialogService
   ) { }
 
   ngOnInit() {
@@ -78,8 +88,20 @@ export class JsonFormComponent implements OnInit {
     // this.myForm = this.fb.group({
     //   personalData: new FormArray([])
     // });
-
+  
   }
+ 
+
+  // openModal() {
+  //   var data = null;//call api
+  //   this.dialogService.openModal("Title1","Message Test", ()=>{
+  //     //confirmed
+  //     console.log('Yes');
+  //   }, ()=>{
+  //     //not confirmed
+  //     console.log('No');
+  //   });
+  // }
 
 
   toFormGroup(questions: Surveycontroller[] ) {
@@ -90,16 +112,24 @@ export class JsonFormComponent implements OnInit {
     
       group[question.formcontrolName] = question?.validators?.required ? new FormControl(question.value || '', Validators.required)
                                               : new FormControl(question.value || '');
+                                            //  console.log("question.formcontrolName",question.formcontrolName);
     });
     console.log(group);
     return new FormGroup(group);
   }
 
+  get f(): { [key: string]: AbstractControl } {
+    return this.myForm.controls;
+  }
 
+  // public hasErrors(formcontrolName: any): boolean {
+  //   return this.myForm && this.myForm.get(formcontrolName).errors
+  //   ?true:false;
+  // }
   
   saveForm(){
     this.submitted = true;
-
+// this.openModal();
     // stop here if form is invalid
     if (this.myForm.invalid) {
         return;

@@ -57,3 +57,14 @@ justify-content:flex-start;
     background-color:#0b6fd2 ;
     color: #fff !important;
 }
+.buttonback{
+    float:right !important;
+    margin-bottom: 15px;
+    margin-left: 22em;
+    top: 100px;
+    position: absolute;
+}
+
+.formcontrolstyle{
+    color:red;
+}
