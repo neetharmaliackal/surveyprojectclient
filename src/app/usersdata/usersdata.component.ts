@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UsersdataService } from './usersdata.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { Router } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 // export type Root = userProperties[]
 
 export interface userProperties {
@@ -36,20 +37,46 @@ export class UsersdataComponent implements OnInit {
   btnDisabled = false;
   submitted = false;
   public value = "";
-  // @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  public state:any;
+  // @Output() childButtonEvent = new EventEmitter();
+  // @Output() childButtonEventRej= new EventEmitter();
+//  private paginator:MatPaginator;
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  // @ViewChild(MatPaginator) set MatPaginator(mp:MatPaginator){
+  //   this.paginator = mp;
+  // }
   dataSource: any;
+  
   // dataSource: any;
  
-  constructor(private fb: FormBuilder, private usersdataService: UsersdataService) { }
+  constructor(private fb: FormBuilder, private usersdataService: UsersdataService,
+    private router: Router,
+    private ActivatedRoute: ActivatedRoute
+    
+    ) { 
+
+      this.state=this.router.getCurrentNavigation()?.extras.state;
+    
+    }
   user = {};
   ngOnInit(): void {
-
+  
     this.usersdataService.getUsersData().
       subscribe((response) => {
         //this.UserData = response;
-       this.dataSource= new MatTableDataSource<userProperties>(response);
-        console.log("data from file", this.UserData);
+        let data;
+        // console.log("data from file", this.UserData);
+        if (this.state && this.state.status === "approved") {
+          data = response.filter((data: { status: string; }) => data.status == "approved");
+        }
+       else if (this.state && this.state.status === "rejected") {
+          data= response.filter((data: { status: string; }) => data.status == "rejected");
+        }
+        else{
+          data=response;
+        }
+        this.dataSource= new MatTableDataSource<userProperties>(data);
+
       })
 
 
@@ -101,13 +128,19 @@ export class UsersdataComponent implements OnInit {
     this.usersdataService.getUsersData().
       subscribe((data) => {
         this.dataSource = data.filter((data: { status: string; }) => data.status == "approved");
+        // this.childButtonEvent.emit(this.dataSource);
+        // console.log("datasource",this.dataSource);
       })
+     
+   
 
   }
   RejectedUsers() {
     this.usersdataService.getUsersData().
       subscribe((data) => {
         this.dataSource= data.filter((data: { status: string; }) => data.status == "rejected");
+        // this.childButtonEventRej.emit(this.dataSource);
+        // console.log("datasourcerejected",this.dataSource);
       })
 
   }

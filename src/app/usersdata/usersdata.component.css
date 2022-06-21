@@ -39,6 +39,14 @@ table {
     
   }
   .backbtn{
-    float: right;
-    position:right;
+    float: right !important;
+    margin-bottom: 16px;
+    margin-left: 98em;
+    top: 46px;
+    position: absolute;
+  }
+
+  .rejus{
+    margin-right: 12px;
+    margin-left: 10px;
   }

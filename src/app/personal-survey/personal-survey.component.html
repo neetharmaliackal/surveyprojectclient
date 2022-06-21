@@ -6,8 +6,16 @@
     <button mat-button routerLink="/usersdata" routerLinkActive="active">View all responses</button>
     <nav>
     <button mat-button routerLink="/jsonForm"  routerLinkActive="active">Take Personal survey</button>
+    <button mat-button (click)="ApprovedUsers()" >Approved Users List</button>
+    <button mat-button (click)="RejectedUsers()">Rejected Users List</button>
+
   </nav>
   </mat-card-actions>
+  
 </mat-card>
-
-
+<!-- <div> -->
+<!-- <app-usersdata
+(childButtonEvent)="Approved($event)"
+(childButtonEventRej)="Rejected($event)"
+><app-usersdata> -->
+<!-- </div> -->
