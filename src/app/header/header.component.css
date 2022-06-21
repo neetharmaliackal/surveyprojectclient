@@ -1,5 +1,12 @@
-h5{
-    background-color: skyblue;
+.headerstyle{
+    background-color: #4f92b7;
     padding:20px;
-    margin:0
+    margin: 0;
+    position: fixed;
+    color: #fff;
+    font-weight: 500;
+    font-size: 26px;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
 }

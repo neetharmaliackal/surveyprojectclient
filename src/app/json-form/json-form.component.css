@@ -70,3 +70,7 @@ justify-content:flex-start;
     color:red;
     /* margin-top: -19px; */
 }
+
+example-radio-group{
+    display: flex;
+}
