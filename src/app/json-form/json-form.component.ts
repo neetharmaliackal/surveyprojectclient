@@ -56,11 +56,11 @@ export class JsonFormComponent implements OnInit {
   // @Input() jsonFormData: any;
   public myForm: FormGroup = this.fb.group({
    
-    firstName: ['', Validators.required],
-    middleName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    radio: ['', Validators.required],
-    address: ['', [Validators.required, Validators.minLength(6)]],
+    // firstName: ['', Validators.required],
+    // middleName: ['', Validators.required],
+    // lastName: ['', Validators.required],
+    // radio: ['', Validators.required],
+    // address: ['', [Validators.required, Validators.minLength(6)]],
  
   });
   public formData!: Surveycontroller[];
@@ -118,9 +118,17 @@ export class JsonFormComponent implements OnInit {
     return new FormGroup(group);
   }
 
-  get f(): { [key: string]: AbstractControl } {
-    return this.myForm.controls;
-  }
+  isValid(question: any) : boolean{
+    if(this.myForm.controls[question.formcontrolName].valid){
+     return true;
+     }
+     else{
+       return false;
+     }
+    }
+  // get f(): { [key: string]: AbstractControl } {
+  //   return this.myForm.controls;
+  // }
 
   // public hasErrors(formcontrolName: any): boolean {
   //   return this.myForm && this.myForm.get(formcontrolName).errors
