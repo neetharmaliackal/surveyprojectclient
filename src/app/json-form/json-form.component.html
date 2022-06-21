@@ -1,93 +1,76 @@
-  <div class="formwrap">
-<div class="formstyle">
+<div class="formwrap">
+  <div class="formstyle">
     <h1 class="headerwrap">Peronal survey</h1>
-  <div *ngFor="let question of formData">
-    <div [formGroup]="myForm">
-<div>
-      <mat-form-field *ngIf="question.type === 'text-box'"  appearance="outline">
-        <!-- <mat-label>{{ question.text }}</mat-label> -->
-        <!-- <span style="color:red">Name Field should enter</span> -->
-        
-        <input
-          matInput
-          [placeholder]="question.text"
-          [type]="question.type"
-          [formControlName]="question.formcontrolName"
-         
-        />
-        <!-- <div *ngIf="submitted && question.formcontrolName" >
-        <div class="formcontrolstyle">Name is required</div> 
-       </div> -->
-      <!-- {{f?.[question].formcontrolName}} -->
-      <!-- [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }"  -->
-        <!-- [ngClass]="{ 'is-invalid': submitted && question.validators.required }" -->
-        <!-- {{question.formcontrolName}} -->
-        <!-- <mat-error *ngIf="myForm.get(question.formcontrolName)">
-          Name is required
-         </mat-error>-->
-         <!-- <div *ngIf="submitted && question.validators.required" class="invalid-feedback">
-          <div *ngIf="question.validators.required">First Name is required</div>
-      </div> -->
-      <!-- {{this.myForm.question.controls.formControlName.errors.firstName}} -->
-
-    </mat-form-field>
-    <div class="formcontrolstyle" *ngIf="!isValid(question) && submitted">{{question.text}} is required</div>
-    <!-- <div *ngIf="submitted && question.formcontrolName && question.type === 'text-box' " >
-      <span class="formcontrolstyle">Name is required</span> 
-     </div> -->
-   
-  </div>
-
-      <div *ngIf="question.type === 'RadioButton'" class="radiowrap">
-        <label class="example-radio-label">{{ question.text }}</label>
-        <mat-radio-group
-          [formControlName]="question.formcontrolName"
-          class="example-radio-group"
-        >
-          <mat-radio-button
-            class="example-radio-button"
-            *ngFor="let opt of question.options"
-            [value]="opt.key"
+    <div *ngFor="let question of formData">
+      <div [formGroup]="myForm">
+        <div>
+          <mat-form-field
+            *ngIf="question.type === 'text-box'"
+            appearance="outline"
           >
-            {{ opt.value }}
-          </mat-radio-button>
-          <!-- {{question.formcontrolName}} -->
-        </mat-radio-group>
-        <!-- <mat-error *ngIf="myForm.get('radio') && myForm.touched">
-         Gender is required
-         </mat-error> -->
-         <!-- <div *ngIf="submitted && question.formcontrolName" >
-          <div class="formcontrolstyle" >Gender is required</div> 
-         </div> -->
-      </div>
+            <input
+              matInput
+              [placeholder]="question.text"
+              [type]="question.type"
+              [formControlName]="question.formcontrolName"
+            />
+          </mat-form-field>
+        </div>
 
-      <div *ngIf="question.type === 'Textarea'">
-        <mat-form-field>
-          <mat-label>{{ question.text }}</mat-label>
-          <textarea
-            matInput
-            [placeholder]="question.text"
-            [type]="question.type"
+        <div *ngIf="question.type === 'RadioButton'" class="radiowrap">
+          <label class="example-radio-label">{{ question.text }}</label>
+          <mat-radio-group
             [formControlName]="question.formcontrolName"
+            class="example-radio-group"
           >
-          </textarea>
-      
-        </mat-form-field>
-        <!-- <mat-error *ngIf="myForm.get('address')">
-          Address is required
-          </mat-error> -->
-          <!-- <div *ngIf="submitted && question.formcontrolName" >
-            <div class="formcontrolstyle">Address is required</div> 
-           </div> -->
+            <mat-radio-button
+              class="example-radio-button"
+              *ngFor="let opt of question.options"
+              [value]="opt.key"
+            >
+              {{ opt.value }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div *ngIf="question.type === 'Textarea'">
+          <mat-form-field>
+            <mat-label>{{ question.text }}</mat-label>
+            <textarea
+              matInput
+              [placeholder]="question.text"
+              [type]="question.type"
+              [formControlName]="question.formcontrolName"
+            >
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="formcontrolstyle" *ngIf="!isValid(question) && submitted">
+        {{ question.text }} is required
       </div>
     </div>
-  </div>
 
-  <div class="form-row" class="buttonstyle">
-    <button mat-stroked-button type="submit" class="btnfeature"  (click)="saveForm()">Save</button>
+    <div class="form-row" class="buttonstyle">
+      <button
+        mat-stroked-button
+        type="submit"
+        class="btnfeature"
+        (click)="saveForm()"
+      >
+        Save
+      </button>
+    </div>
+    <div class="form-row" class="buttonstyle">
+      <button
+        mat-stroked-button
+        mat-button
+        routerLink="/survey"
+        routerLinkActive="active"
+        class="buttonback"
+      >
+        Back
+      </button>
+    </div>
   </div>
-  <div class="form-row" class="buttonstyle">
-    <button mat-stroked-button  mat-button routerLink="/survey"  routerLinkActive="active" class="buttonback">Back</button>
-  </div>
-</div>
 </div>

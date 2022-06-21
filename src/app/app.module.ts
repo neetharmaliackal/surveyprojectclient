@@ -9,10 +9,14 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { PersonalSurveyModule } from './personal-survey/personalsurvey.module';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    FooterComponent,
   
       ],
   imports: [

@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
+import { MatSort } from '@angular/material/sort';
 // export type Root = userProperties[]
 
 export interface userProperties {
@@ -42,6 +43,7 @@ export class UsersdataComponent implements OnInit {
   // @Output() childButtonEventRej= new EventEmitter();
 //  private paginator:MatPaginator;
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  @ViewChild(MatSort) sort: MatSort | undefined;
   // @ViewChild(MatPaginator) set MatPaginator(mp:MatPaginator){
   //   this.paginator = mp;
   // }
@@ -76,16 +78,17 @@ export class UsersdataComponent implements OnInit {
           data=response;
         }
         this.dataSource= new MatTableDataSource<userProperties>(data);
-
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       })
 
 
 
   }
   
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  // }
 
   applyFilter(filterValue: any) {
     const filters=filterValue.target.value;

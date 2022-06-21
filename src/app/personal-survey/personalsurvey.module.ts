@@ -24,7 +24,8 @@ import { UsersdataService } from '../usersdata/usersdata.service';
 import { JsonFormService } from '../json-form/json-form.service';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   imports: [
     CommonModule ,
@@ -43,7 +44,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatSortModule
     
   ],
   declarations: [ 
