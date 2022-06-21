@@ -15,9 +15,9 @@
           [formControlName]="question.formcontrolName"
          
         />
-        <div *ngIf="submitted && question.formcontrolName" >
+        <!-- <div *ngIf="submitted && question.formcontrolName" >
         <div class="formcontrolstyle">Name is required</div> 
-       </div>
+       </div> -->
       <!-- {{f?.[question].formcontrolName}} -->
       <!-- [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }"  -->
         <!-- [ngClass]="{ 'is-invalid': submitted && question.validators.required }" -->
@@ -31,7 +31,9 @@
       <!-- {{this.myForm.question.controls.formControlName.errors.firstName}} -->
 
     </mat-form-field>
-
+    <div *ngIf="submitted && question.formcontrolName && question.type === 'text-box' " >
+      <div class="formcontrolstyle">Name is required</div> 
+     </div>
    
   </div>
 
