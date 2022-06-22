@@ -73,6 +73,15 @@ export class PersonalSurveyComponent implements OnInit {
 
     })
   }
+  setRoot(root:string) {
+    if(root == 'Personal Survey'){
+      root='personal-survey'
+    }
+    else if(root == 'Extra Curricular Activity Survey'){
+      root='extra-survey'
+    }
+this.personalSurveyService.sendRoot(root);
+  }
 
  
 

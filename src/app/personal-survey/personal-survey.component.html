@@ -5,7 +5,7 @@
   <mat-card-actions align="end">
     <button mat-button routerLink="/usersdata" routerLinkActive="active">View All Responses</button>
     <nav>
-    <button mat-button routerLink="/jsonForm"  routerLinkActive="active">Take Personal survey</button>
+    <button mat-button routerLink="/jsonForm" (click)="setRoot(card.title)" routerLinkActive="active">Take Personal survey</button>
     <button mat-button (click)="ApprovedUsers()" >View Approved Users List</button>
     <button mat-button (click)="RejectedUsers()">View Rejected Users List</button>
 

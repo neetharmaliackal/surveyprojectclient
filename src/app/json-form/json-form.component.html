@@ -1,7 +1,11 @@
 <div class="formwrap">
   <div class="formstyle">
-    <h1 class="headerwrap">Peronal survey</h1>
+    <h1 class="headerwrap">survey</h1>
+ <!-- <div *ngFor="let question of formData">
+  Hi  {{DataForm}}
+</div> -->
     <div *ngFor="let question of formData">
+      
       <div [formGroup]="myForm">
         <div>
           <mat-form-field
@@ -49,7 +53,7 @@
       <div class="formcontrolstyle" *ngIf="!isValid(question) && submitted">
         {{ question.text }} is required
       </div>
-    </div>
+    </div> 
 
     <div class="form-row" class="buttonstyle">
       <button
