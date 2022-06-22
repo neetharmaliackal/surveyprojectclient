@@ -1,39 +1,56 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {API} from '../../../API/index'
+import { API } from '../../../API/index'
 import { PersonalSurveyService } from './personal-survey.service';
-import {FormGroup} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { UsersdataService } from '../usersdata/usersdata.service';
-import {Router} from '@angular/router';
-import {ActivatedRoute} from '@angular/router';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 // import {JsonFormData} from '../json-form/json-form.component'
+export interface card {
+  title: string
+  
+  // approved: boolean,
+  // rejected: boolean
+}
 @Component({
   selector: 'app-personal-survey',
   templateUrl: './personal-survey.component.html',
   styleUrls: ['./personal-survey.component.css']
 })
 export class PersonalSurveyComponent implements OnInit {
-  personalData:string='';
+  personalData: string = '';
   public formData: any;
   dataSource: any;
+
   msgOnButtonClickApproved: string | undefined;
   msgOnButtonClickRejected: string | undefined;
   // public approved: string | undefined;
   // public rejected: string | undefined;
- 
+  
+  public cards:card[] =[];
   constructor(
-    private personalSurveyService:PersonalSurveyService,
+    private personalSurveyService: PersonalSurveyService,
     private usersdataService: UsersdataService,
     private router: Router,
     private route: ActivatedRoute,
-    ) { }
+  ) { }
 
-    
+
   ngOnInit(): void {
- console.log("personal");
- 
+    this.cards = [
+      {
+      title: "Personal Survey"
+    },
+    {
+      title: "Extra Curricular Activity Survey"
+    }
+    ]
+
   }
+
+
   Approved(p: string | undefined) {
     this.msgOnButtonClickApproved = p;
   }
@@ -42,19 +59,21 @@ export class PersonalSurveyComponent implements OnInit {
   }
 
   ApprovedUsers() {
-this.router.navigate(['/usersdata'],{
-relativeTo:this.route,
-state:{status:'approved'}
-  
-})
+    this.router.navigate(['/usersdata'], {
+      relativeTo: this.route,
+      state: { status: 'approved' }
+
+    })
 
   }
   RejectedUsers() {
-    this.router.navigate(['/usersdata'],{
-      relativeTo:this.route,
-      state:{status:'rejected'}
-        
-      })
+    this.router.navigate(['/usersdata'], {
+      relativeTo: this.route,
+      state: { status: 'rejected' }
+
+    })
   }
+
+ 
 
 }

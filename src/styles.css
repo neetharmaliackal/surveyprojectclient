@@ -10,7 +10,7 @@
     height: 100%;
   }
    */
-html, body {     height: auto; }
+html, body {     height: 95; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 nav a.active { color: #039be5}

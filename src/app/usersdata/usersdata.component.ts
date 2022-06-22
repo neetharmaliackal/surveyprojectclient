@@ -47,6 +47,7 @@ export class UsersdataComponent implements OnInit {
   // @ViewChild(MatPaginator) set MatPaginator(mp:MatPaginator){
   //   this.paginator = mp;
   // }
+  
   dataSource: any;
   
   // dataSource: any;
@@ -73,6 +74,7 @@ export class UsersdataComponent implements OnInit {
         }
        else if (this.state && this.state.status === "rejected") {
           data= response.filter((data: { status: string; }) => data.status == "rejected");
+         
         }
         else{
           data=response;
@@ -82,6 +84,10 @@ export class UsersdataComponent implements OnInit {
         this.dataSource.sort = this.sort;
       })
 
+    //   this.usersdataService.getExtraUsersData().
+    //   subscribe((response) => {
+    //    this.dataSource=response;
+    //  })
 
 
   }
@@ -102,21 +108,7 @@ export class UsersdataComponent implements OnInit {
     alert("User data approved successfully");
 
     this.usersdataService.ApproveorRejectUsersData(element.id, "approved").subscribe(data => {
-      // for(let i=0;i<data.length;i++){
-      // if(element.id==data.id){
-      //   this.btnDisabled = true;
-      //  }
-
-      // }
-
-
-      //  if(data.status=="approve"){
-      //   this.approvedUsersData=data;
-      //   console.log("this.approvedUsersData",this.approvedUsersData);
-      //  }
-      //  else if(data && data.status=="reject"){
-      //   this.RejectedUsersData=data;
-      //  }
+     
     })
   }
 
