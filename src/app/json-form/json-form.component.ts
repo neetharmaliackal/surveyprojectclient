@@ -72,17 +72,18 @@ export interface Option {
   templateUrl: './json-form.component.html',
   styleUrls: ['./json-form.component.css']
 })
-export class JsonFormComponent implements OnInit,OnDestroy {
-  user:any = {};
+export class JsonFormComponent implements OnInit, OnDestroy {
+  user: any = {};
   public myForm: FormGroup = this.fb.group({
- 
+
   });
   public formData!: Surveycontroller[];
-  isNextDisabled=true
+  isNextDisabled = true
   submitted = false;
+  root: string | undefined;
   // DataForm: Surveycontroller[]=[];
   // subscription: any;
-//  root='';
+  //  root='';
   constructor(private fb: FormBuilder,
     private personalSurveyService: PersonalSurveyService,
     private jsonFormService: JsonFormService,
@@ -90,84 +91,96 @@ export class JsonFormComponent implements OnInit,OnDestroy {
   ) { }
 
   ngOnInit() {
-     this.personalSurveyService.getRoot().subscribe(root=> {
-    if(root)
-    { 
-      this.personalSurveyService.getPersonalData().
-      subscribe((response:any[]) => {
-        console.log("response",response);
-        
-         response.forEach((el:Root2) =>{
-          if(el.surveytype ===root){
-            this.formData=el.surveycontrollers;
-          }
-          // else if(this.root ==='extra-survey'){
-          //   this.formData=response.filter((response: { surveytype: string; }) => response.surveytype == 'extra-survey');
-          // }
-          } );
-
-          
+   
+    this.personalSurveyService.survey.subscribe(rootsurvey => {
+      if (rootsurvey) {
+        this.root= rootsurvey;
+      }
       
+
+    });
+
+    // this.root = "";
+    // this.root = this.getRootSurvey();
+    this.personalSurveyService.getPersonalData().
+      subscribe((response: any[]) => {
+        console.log("response", response, this.root);
+        if (this.root) {
+          response.forEach((el: Root2) => {
+            if (el.surveytype === this.root) {
+              this.formData = el.surveycontrollers;
+              console.log("el.surveycontrollers", el.surveycontrollers)
+            }
+            // else if(this.root ==='extra-survey'){
+            //   this.formData=response.filter((response: { surveytype: string; }) => response.surveytype == 'extra-survey');
+            // }
+          });
+
+        }
+
+
+
         // this.formData = response;
         // this.formData = response.surveycontrollers;
         console.log(" this.formData", this.formData);
-       this.myForm= this.toFormGroup(this.formData);
-    
+        this.myForm = this.toFormGroup(this.formData);
+
       })
-    }
-      
-    });
 
-  
 
-     
 
-  
+
+
+  }
+
+  getRootSurvey(): any {
+    
+
   }
 
 
- 
 
- 
+
+
 
   toFormGroup(questions: Surveycontroller[]) {
-  console.log("questions",questions)
+    console.log("questions", questions)
     let group: any = {};
 
     questions.forEach(question => {
-    
+
       group[question.formcontrolName] = question?.validators?.required ? new FormControl(question.value || '', Validators.required)
-                                              : new FormControl(question.value || '');
+        : new FormControl(question.value || '');
     });
-    console.log("group",group);
+    console.log("group", group);
     return new FormGroup(group);
   }
 
-  isValid(question: any) : boolean{
-    if(this.myForm.controls[question.formcontrolName].valid){
-     return true;
-     }
-     else{
-       return false;
-     }
+  isValid(question: any): boolean {
+    if (this.myForm.controls[question.formcontrolName].valid) {
+      return true;
     }
-  
-  
-  saveForm(){
-    this.submitted = true;
-    if (this.myForm.invalid) {
-        return;
+    else {
+      return false;
     }
-    this.user=Object.assign(this.user, this.myForm.value);  
-    alert("user data saved successfully");  
-    console.log("this.user",this.user);
-    this.jsonFormService.profileSave(this.user).subscribe(result => {   
-    })
-    this.router.navigate(['/usersdata']); 
   }
 
-  ngOnDestroy(){
-  // this.personalSurveyService.clearRoot();
+
+  saveForm() {
+    this.submitted = true;
+    if (this.myForm.invalid) {
+      return;
+    }
+    this.user = Object.assign(this.user, this.myForm.value);
+    alert("user data saved successfully");
+    console.log("this.user", this.user);
+    this.jsonFormService.profileSave(this.user).subscribe(result => {
+    })
+    this.router.navigate(['/usersdata']);
+  }
+
+  ngOnDestroy() {
+    // this.personalSurveyService.clearRoot();
   }
 
 
